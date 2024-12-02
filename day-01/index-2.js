@@ -15,13 +15,27 @@ const [ listA, listB ] = fs.readFileSync(__dirname + '/input.txt', 'utf8')
 listA.sort();
 listB.sort();
 
-let distance = 0;
+let score = 0;
+let nextB = listB.shift();
 
 for (let i = 0; i < listA.length; i++) {
-    const big   = Math.max(listA[i], listB[i]);
-    const small = Math.min(listA[i], listB[i]);
+    const a = listA[i];
 
-    distance += (big - small);
+    let multiplier = 0;
+
+    while (listB.length > 0) {
+        if (nextB > a) {
+            break;
+        }
+
+        if (nextB === a) {
+            multiplier++;
+        }
+
+        nextB = listB.shift();
+    }
+
+    score += (a * multiplier);
 }
 
-console.log(distance);
+console.log(score);
