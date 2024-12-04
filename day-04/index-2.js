@@ -2,20 +2,6 @@ const fs = require('fs');
 
 const grid = fs.readFileSync(__dirname + '/input.txt', 'utf8').split('\n').map(line => line.split(''));
 
-const isXmas = (rowIndex, colIndex, rowChange, colChange) => {
-    for (const letter of [ 'M', 'A', 'S' ]) {
-        rowIndex += rowChange;
-        colIndex += colChange;
-
-        if (grid[rowIndex]?.[colIndex] !== letter) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
 let counter = 0;
 
 for (let row = 0; row < grid.length; row++) {
