@@ -20,17 +20,17 @@ const hasLoop = () => {
     let seen = [];
     
     while (true) {
-        let nextRow = currentRow + directions[currentDirection % 4][0];
-        let nextCol = currentCol + directions[currentDirection % 4][1];
+        let nextRow = currentRow + directions[currentDirection][0];
+        let nextCol = currentCol + directions[currentDirection][1];
 
         let nextSymbol = grid[nextRow]?.[nextCol];
     
         if (!nextSymbol) {
             return false;
         } else if (nextSymbol === '#' || nextSymbol === 'O') {
-            const key = nextRow + ':' + nextCol + ':' + (currentDirection % 4);
+            const key = nextRow + ':' + nextCol + ':' + currentDirection;
 
-            currentDirection++;
+            currentDirection = (currentDirection + 1) % 4;
 
             if (seen.includes(key)) {
                 return true;

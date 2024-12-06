@@ -17,8 +17,8 @@ let currentDirection = 0;
 let counter = 0;
 
 while (true) {
-    let nextRow = currentRow + directions[currentDirection % 4][0];
-    let nextCol = currentCol + directions[currentDirection % 4][1];
+    let nextRow = currentRow + directions[currentDirection][0];
+    let nextCol = currentCol + directions[currentDirection][1];
     
     let nextSymbol = grid[nextRow]?.[nextCol];
 
@@ -26,7 +26,7 @@ while (true) {
         counter++;
         break;
     } else if (nextSymbol === '#') {
-        currentDirection++;
+        currentDirection = (currentDirection + 1) % 4;
     } else {
         if (nextSymbol !== 'X') {
             grid[nextRow][nextCol] = 'X';
