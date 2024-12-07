@@ -10,9 +10,9 @@ const formulas = fs.readFileSync(__dirname + '/input.txt', 'utf8').split('\n').m
 
 const add = (a, b) => a + b;
 const multiply = (a, b) => a * b;
-const contat = (a, b) => parseInt(a + '' + b);
+const concat = (a, b) => parseInt(a + '' + b);
 
-const operations = [ add, multiply, contat ];
+const operations = [ add, multiply, concat ];
 
 const isPossible = (total, numbers) => {
     const sums = [ [ numbers.shift() ] ];
