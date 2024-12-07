@@ -1,7 +1,7 @@
-const before = new Date().getMilliseconds();
+const before = Date.now();
 
 require('./' + process.argv[2]);
 
-const after = new Date().getMilliseconds();
+const after = Date.now();
 
 console.log('Time: ' + (after - before));
