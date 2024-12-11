@@ -19,34 +19,30 @@ const getNumberSum = (number, depth = 0) => {
     depth++;
 
     const numberString = number.toString();
+    const nextNumbers = [];
 
     if (number === 0) {
-        const nextNumber = 1;
-
-        const sum = getNumberSum(nextNumber, depth);
-        sumCache.set(nextNumber + ':' + depth, sum);
-        return sum;
+        nextNumbers.push(1);
     } else if (numberString.length % 2 === 0) {
         const partLength = numberString.length / 2;
 
         const firstNum = parseInt(numberString.substring(0, partLength));
         const secondNum = parseInt(numberString.substring(partLength, partLength + partLength));
 
-        const firstSum = getNumberSum(firstNum, depth);
-        sumCache.set(firstNum + ':' + depth, firstSum);
-
-        const secondSum = getNumberSum(secondNum, depth);
-        sumCache.set(secondNum + ':' + depth, secondSum);
-
-        return firstSum + secondSum;
+        nextNumbers.push(firstNum, secondNum);
     } else {
-        const nextNumber = number * 2024;
+        nextNumbers.push(number * 2024);
+    }
 
+    let totalSum = 0;
+
+    for (const nextNumber of nextNumbers) {
         const sum = getNumberSum(nextNumber, depth);
         sumCache.set(nextNumber + ':' + depth, sum);
-
-        return sum;
+        totalSum += sum;
     }
+    
+    return totalSum;
 }
 
 let sum = 0;
